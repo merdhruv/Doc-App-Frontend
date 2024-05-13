@@ -48,7 +48,7 @@ export default function Register() {
 
   const clearForm = () => {
     resetForm();
-    setRole("role");
+    setRole("");
     setDoj(new Date().toISOString().substr(0, 10));
   };
 
