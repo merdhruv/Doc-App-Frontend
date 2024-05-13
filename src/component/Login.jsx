@@ -37,6 +37,7 @@ const customStyles = {
     width: "400px",
   },
 };
+Modal.setAppElement("#root");
 
 export default function Login({ setToken }) {
 
@@ -208,8 +209,6 @@ export default function Login({ setToken }) {
                   <MenuItem value="admin">Admin</MenuItem>
                 </TextField>
               </Grid>
-
-             
 
             </Grid>
             <Button
