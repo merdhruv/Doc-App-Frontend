@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Modal from "react-modal";
 import "./login.css";
 import {useFormik} from 'formik';
@@ -16,7 +16,8 @@ import {
   TextField,
   MenuItem,
   Grid,
-  Container
+  Container,
+  Alert
 } from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { loginSchema } from "./Validator";
@@ -38,6 +39,9 @@ const customStyles = {
 };
 
 export default function Login({ setToken }) {
+
+ 
+
   async function loginUser(credentials) {
     const url = "http://localhost:5000/api/user/login";
     return fetch(url, {
@@ -61,15 +65,25 @@ export default function Login({ setToken }) {
     } else if (token.message === "Success Admin") {
       window.location.href = "/admin";
     }
+    else if(token.message === 'Password does not matched!'){
+      alert('Incorrect Password');
+    }
     console.log(token.message);
   };
   const handleRegister = async () => {
-    // setToken({
-    //   message: "register",
-    //   token: "lkadshfhjasdkbjfhj",
-    // });
+    setToken({
+      message: "register",
+      token: "lkadshfhjasdkbjfhj",
+    });
     window.location.href = "/register";
   };
+
+  const handleLogin = ()=>{
+    sessionStorage.clear();
+    setModalIsOpen(true);
+  }
+
+
   const {values, handleSubmit, isValid, isSubmitting, touched, errors,getFieldProps}  = useFormik({
     initialValues:{
         email:"",
@@ -106,7 +120,7 @@ export default function Login({ setToken }) {
                 color="success"
                 variant="contained"
                 size="small"
-                onClick={() => setModalIsOpen(true)}
+                onClick={handleLogin}
               >
                 Login
               </Button>
@@ -212,9 +226,9 @@ export default function Login({ setToken }) {
               <Button
                 
                 size="large"
-                onClick={() => {
-                  handleRegister();
-                }}
+                onClick={
+                  handleRegister
+                }
                 style={{ width: "50%" }}
               >
                 Register

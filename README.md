@@ -8,3 +8,4 @@ Welcome to DOC-App, an Document Tracking  Web Application designed to simplify t
 2. Navigate to the project directory.
 3. Install dependencies using npm install.
 4. Run the application using npm start. 
+
