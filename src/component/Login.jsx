@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState} from "react";
 import Modal from "react-modal";
 import "./login.css";
 import {useFormik} from 'formik';
@@ -17,7 +17,6 @@ import {
   MenuItem,
   Grid,
   Container,
-  Alert
 } from "@mui/material";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { loginSchema } from "./Validator";
@@ -85,7 +84,7 @@ export default function Login({ setToken }) {
   }
 
 
-  const {values, handleSubmit, isValid, isSubmitting, touched, errors,getFieldProps}  = useFormik({
+  const {values, handleSubmit, touched, errors,getFieldProps}  = useFormik({
     initialValues:{
         email:"",
         password:""
