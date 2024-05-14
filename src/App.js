@@ -27,7 +27,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element = {<Login/>}/>
+        <Route path='/' element = {<Login setToken={setToken}/>}/>
         <Route path='/register'element={<Register/>} />
         <Route path = "/PdfViewer/:filename" element = {<PdfViewer/>} />
 

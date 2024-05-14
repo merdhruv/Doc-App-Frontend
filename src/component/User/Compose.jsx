@@ -5,7 +5,8 @@ import {
   Upload,
   Button,
   Space,
-  message
+  message,
+  Select
 } from "antd";
 import axios from "axios";
 import { PlusOutlined, SendOutlined } from "@ant-design/icons";
@@ -40,13 +41,13 @@ export default function UserForm() {
       });
   
       // Send POST request
-      const result = await axios.post("http://localhost:5000/api/file/addfile", formData, {
+      await axios.post("http://localhost:5000/api/file/addfile", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
-      });
+      }); 
   
-      console.log(result.data);
+      // console.log(result.data);
       // Reset form and file list
       form.resetFields();
       setFileList([]);
@@ -74,7 +75,7 @@ export default function UserForm() {
   };
 
   return (
-    <div className="user-form">
+    <div className="user-form" style={{"marginTop":"30px"}}>
       <Form
         form={form}
         labelCol={{
@@ -101,11 +102,13 @@ export default function UserForm() {
         </Form.Item>
 
         <Form.Item label="Category" name="category">
-          <Input />
-        </Form.Item>
-
-        <Form.Item label="Prioritization" name="prioritization">
-          <Input />
+          <Select>
+          <Select.Option value="Routine">Routine</Select.Option>
+          <Select.Option value="Urgent">Urgent</Select.Option>
+          <Select.Option value="Critical">Critical</Select.Option>
+          <Select.Option value="Non-Essentail">Non-Essentail</Select.Option>
+          <Select.Option value = "Immediate Attention">Immediate Attention</Select.Option> 
+          </Select>
         </Form.Item>
 
         <Form.Item label="Description">
@@ -133,6 +136,7 @@ export default function UserForm() {
               type="primary"
               icon={<SendOutlined />}
               onClick={handleSend}
+              style={{"marginLeft": "100px"}}
             >
               Send
             </Button>

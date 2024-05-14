@@ -86,7 +86,7 @@ export default function UserHome() {
                         <Typography variant='h4'>
                             Incoming Document
                         </Typography> 
-                        <Typography variant='h4'sx={{pl:7, pt:2}} >5</Typography>
+                        <Typography variant='h4'sx={{pl:7, pt:2}} >{documentsList.length}</Typography>
                     </Card>
                 </Grid>
                 <Grid item xs={12} sm={3}>
